@@ -14,13 +14,19 @@
 }
 
 .rep-container {
-  width: 30%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20%;
+  height: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgb(80, 255, 161);
   border-radius: 10px;
   padding: 10px;
+  z-index: 1;
 }
 
 .rep-container:hover {
@@ -37,8 +43,9 @@
 }
 
 .button-container img {
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 @keyframes rotate {
