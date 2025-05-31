@@ -26,3 +26,26 @@
 .rep-container:hover {
   background-color: rgb(100, 255, 181);
 }
+
+.button-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  animation: rotate 10s linear infinite;
+}
+
+.button-container img {
+  width: 300px;
+  height: 300px;
+}
+
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
