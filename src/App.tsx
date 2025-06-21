@@ -82,7 +82,11 @@ function App() {
       </div>
       {rep && (
         <div className="name-display centered">
-          <p className="subtitle">新婦のエスコートをお願いします！</p>
+          {isBridge ? (
+            <p className="subtitle">新郎のエスコートをお願いします！</p>
+          ) : (
+            <p className="subtitle">新婦のエスコートをお願いします！</p>
+          )}
           <h1>{rep}</h1>
         </div>
       )}
