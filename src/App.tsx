@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import { participants } from "./participant";
+import { participantsList } from "./participant";
 
 function App() {
   const [rep, setRep] = useState<string>("");
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [hasRun, setHasRun] = useState<boolean>(false);
   const audioCtxRef = useRef<AudioContext | null>(null);
+  const [isBridge, setIsBridge] = useState<boolean>(true);
 
   useEffect(() => {
     if (!audioCtxRef.current) {
@@ -59,6 +60,9 @@ function App() {
         startInterval + (endInterval - startInterval) * Math.pow(progress, 2);
 
       setTimeout(() => {
+        const participants = isBridge
+          ? participantsList.bridge
+          : participantsList.groom;
         const randomIndex = Math.floor(Math.random() * participants.length);
         playTickSound(); // 이 시점에 사운드 실행
         setRep(participants[randomIndex]);
@@ -68,6 +72,7 @@ function App() {
     };
 
     runIteration();
+    setIsBridge(!isBridge);
   };
 
   return (
