@@ -40,6 +40,9 @@ function App() {
       audioCtxRef.current.resume();
     }
 
+    // 버튼을 누를 때 원래 배경색으로 되돌리기
+    document.body.classList.remove('celebration');
+
     setIsRunning(true);
     setHasRun(true);
 
@@ -52,6 +55,10 @@ function App() {
     const runIteration = () => {
       if (currentIteration >= totalIterations) {
         setIsRunning(false);
+        
+        // 룰렛이 끝났을 때 배경색 변경 (다음 버튼 클릭까지 지속)
+        document.body.classList.add('celebration');
+        
         return;
       }
 
