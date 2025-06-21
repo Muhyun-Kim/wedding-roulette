@@ -5,6 +5,26 @@
   text-align: center;
 }
 
+body {
+  background-color: #FEFFE9;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  z-index: -10;
+}
+
 .page-container {
   display: flex;
   justify-content: center;
@@ -13,24 +33,85 @@
   height: 100vh;
 }
 
-.rep-container {
+.page-title {
   position: fixed;
-  top: 50%;
+  top: 40px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20%;
-  height: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(80, 255, 161);
-  border-radius: 10px;
-  padding: 10px;
-  z-index: 1;
+  transform: translateX(-50%);
+  z-index: 2;
 }
 
-.rep-container:hover {
-  background-color: rgb(100, 255, 181);
+.page-title h1 {
+  font-family: "Platypi", serif;
+  font-size: 2rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #008B3F;
+  margin: 0;
+  text-align: center;
+}
+
+.subtitle {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #008B3F;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+.name-display {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+}
+
+.name-display.centered {
+  top: calc(45% + 16px);
+}
+
+.name-display h1 {
+  font-size: 3rem;
+  color: #008B3F;
+  margin: 0;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 500;
+}
+
+.start-button {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  background-color: #008B3F;
+  color: #FFF;
+  border: none;
+  border-radius: 160px;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.15s ease;
+  font-family: "Platypi", serif;
+  font-weight: 500;
+  box-shadow: 4px 4px 0px #EFA351;
+}
+
+.start-button.centered-button {
+  top: 50%;
+}
+
+.start-button.bottom-button {
+  bottom: 152px;
+  top: auto;
+}
+
+.start-button:hover {
+  background-color: #006B32;
+  box-shadow: 0px 0px 0px #EFA351;
 }
 
 .button-container {
@@ -39,7 +120,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
-  animation: rotate 10s linear infinite;
+  animation: rotate 50s linear infinite;
 }
 
 .button-container img {
@@ -52,6 +133,7 @@
   from {
     transform: translate(-50%, -50%) rotate(0deg);
   }
+
   to {
     transform: translate(-50%, -50%) rotate(360deg);
   }

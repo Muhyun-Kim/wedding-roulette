@@ -3,7 +3,9 @@ import "./App.css";
 import { participants } from "./participant";
 
 function App() {
-  const [rep, setRep] = useState<string>(participants[0]);
+  const [rep, setRep] = useState<string>("");
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [hasRun, setHasRun] = useState<boolean>(false);
   const audioCtxRef = useRef<AudioContext | null>(null);
 
   useEffect(() => {
@@ -37,6 +39,9 @@ function App() {
       audioCtxRef.current.resume();
     }
 
+    setIsRunning(true);
+    setHasRun(true);
+
     const totalIterations = 30;
     const startInterval = 80;
     const endInterval = 600;
@@ -44,7 +49,10 @@ function App() {
     let currentIteration = 0;
 
     const runIteration = () => {
-      if (currentIteration >= totalIterations) return;
+      if (currentIteration >= totalIterations) {
+        setIsRunning(false);
+        return;
+      }
 
       const progress = currentIteration / totalIterations;
       const currentInterval =
@@ -64,9 +72,25 @@ function App() {
 
   return (
     <div className="page-container">
-      <button onClick={onClick} className="rep-container">
-        <h1>{rep}</h1>
-      </button>
+      <div className="page-title">
+        <h1>Escort Roulette</h1>
+      </div>
+      {rep && (
+        <div className="name-display centered">
+          <p className="subtitle">新婦のエスコートをお願いします！</p>
+          <h1>{rep}</h1>
+        </div>
+      )}
+      {!isRunning && !hasRun && (
+        <button onClick={onClick} className="start-button centered-button">
+          START
+        </button>
+      )}
+      {!isRunning && hasRun && (
+        <button onClick={onClick} className="start-button bottom-button">
+          RESTART
+        </button>
+      )}
       <div className="button-container">
         <img src="/logo.svg" alt="logo" />
       </div>
